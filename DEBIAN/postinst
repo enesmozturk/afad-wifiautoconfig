@@ -1,20 +1,12 @@
 #!/bin/bash
-#####################################################################################
-#####################################################################################
-##########################    AFAD - VPN    #########################################
-#####################################################################################
-#####################################################################################
-#####################################################################################
-##################  openconnect kurulumu  ###########################################
-cd /opt/afad-vpn
-cp afad-vpn.desktop /usr/share/applications/
-cp afad-vpn.sh /opt/afad/
-chmod 755 /opt/afad/afad-vpn.sh
-############ Normal kullanıcılara VPN Çalıştırma yetkisi ############################
-sudoers_file1=$(less /etc/sudoers |grep "NOPASSWD: openconnect" | wc -l)
-if [ "$sudoers_file1" -lt "2" ] ; then
-echo 'ALL ALL= NOPASSWD: /usr/sbin/openconnect' | sudo EDITOR='tee -a' visudo
-echo 'ALL ALL= NOPASSWD: /usr/local/sbin/openconnect' | sudo EDITOR='tee -a' visudo
+cp -r /opt/afad-wifiautoconfig/afad-wifiautoconfig.sh /usr/bin/
+chown root:root /usr/bin/afad-wifiautoconfig.sh
+chmod 700 /usr/bin/afad-wifiautoconfig.sh
+cp -r /opt/afad-wifiautoconfig/afad-wifiautoconfig.desktop /etc/xdg/autostart/
+############ Normal kullanıcılara Wifi Çalıştırma yetkisi ############################
+sudoers_file1=$(less /etc/sudoers |grep "NOPASSWD: afad-wifiautoconfig" | wc -l)
+if [ "$sudoers_file1" -lt "1" ] ; then
+echo 'ALL ALL= NOPASSWD: /usr/bin/afad-wifiautoconfig.sh' | sudo EDITOR='tee -a' visudo
 else 
 echo sudoers-ok
 fi

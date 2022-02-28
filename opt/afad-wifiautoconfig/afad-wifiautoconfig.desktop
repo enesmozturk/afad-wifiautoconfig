@@ -2,9 +2,9 @@
 Version=1.0
 Type=Application
 Categories=Network;Application;
-Name=Afad - VPN
-Comment=Afad VPN Uygulaması openconnect
-Exec=/opt/afad/afad-vpn.sh
+Name=Afad - wifiautoconfig
+Comment=Afad wifiautoconfig
+Exec=sudo /usr/bin/afad-wifiautoconfig.sh
 Icon=network-workgroup
 Path=
 Terminal=true
